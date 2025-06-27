@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>My Blog</title>
+		<link rel="stylesheet" href="/css/styles.css" />
+	</head>
+	<body>
+		<nav class="container">
+			<a href="/">Home</a>
+			<% if (typeof userId !== 'undefined' && userId) { %>
+			<a href="/new">New Post</a>
+			<span>Welcome, <%= name %></span>
+			<a href="/logout">Logout</a>
+			<% } else { %>
+			<a href="/login">Login</a>
+			<a href="/register">Sign Up</a>
+			<% } %>
+		</nav>
+	</body>
+</html>

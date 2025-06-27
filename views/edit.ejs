@@ -1,9 +1,7 @@
-<!-- Form to edit a post -->
-<%- include('partials/header') %>
-
+<%- include('partials/header', {userId: userId, name: name}) %>
 <div class="container">
 	<h1>Edit Post</h1>
-	<form action="/edit/<%= post.id %>" method="POST">
+	<form action="/edit/<%= post.blog_id %>" method="POST">
 		<label>Title:</label><br />
 		<input
 			type="text"
@@ -11,21 +9,10 @@
 			value="<%= post.title %>"
 			required
 		/><br /><br />
-
-		<label>Author:</label><br />
-		<input
-			type="text"
-			name="author"
-			value="<%= post.author %>"
-			required
-		/><br /><br />
-
 		<label>Content:</label><br />
-		<textarea name="content" rows="6" required><%= post.content %></textarea
+		<textarea name="content" rows="6" required><%= post.body %></textarea
 		><br /><br />
-
 		<button type="submit">Save Changes</button>
 	</form>
 </div>
-
 <%- include('partials/footer') %>

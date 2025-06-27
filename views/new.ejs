@@ -1,19 +1,12 @@
-<%- include('partials/header') %>
-
+<%- include('partials/header', {userId: userId, name: name}) %>
 <div class="container">
 	<h1>Create a New Post</h1>
 	<form action="/new" method="POST">
 		<label>Title:</label><br />
 		<input type="text" name="title" required /><br /><br />
-
-		<label>Author:</label><br />
-		<input type="text" name="author" required /><br /><br />
-
 		<label>Content:</label><br />
 		<textarea name="content" rows="6" required></textarea><br /><br />
-
 		<button type="submit">Publish</button>
 	</form>
 </div>
-
 <%- include('partials/footer') %>
