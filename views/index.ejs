@@ -1,0 +1,21 @@
+<%- include('partials/header') %>
+
+<div class="container">
+	<h1>My Blog</h1>
+	<a href="/new">Create New Post</a>
+
+	<% if (posts.length === 0) { %>
+	<p>No posts yet.</p>
+	<% } else { %> <% posts.forEach(post => { %>
+	<div class="post">
+		<h2><%= post.title %></h2>
+		<p><strong>By:</strong> <%= post.author %> | <%= post.date %></p>
+		<p><%= post.content %></p>
+		<a href="/edit/<%= post.id %>">Edit</a> |
+		<a href="/delete/<%= post.id %>">Delete</a>
+		<hr />
+	</div>
+	<% }) %> <% } %>
+</div>
+
+<%- include('partials/footer') %>
