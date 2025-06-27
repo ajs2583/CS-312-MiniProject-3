@@ -10,7 +10,7 @@
 			<a href="/">Home</a>
 			<% if (typeof userId !== 'undefined' && userId) { %>
 			<a href="/new">New Post</a>
-			<span>Welcome, <%= name %></span>
+			<span class="welcome">Welcome, <%= name %></span>
 			<a href="/logout">Logout</a>
 			<% } else { %>
 			<a href="/login">Login</a>
