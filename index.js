@@ -18,16 +18,18 @@ app.use(
 	})
 );
 
+app.use((req, res, next) => {
+	res.locals.userId = req.session.userId;
+	res.locals.name = req.session.name;
+	next();
+});
+
 // Home page - show all posts
 app.get("/", async (req, res) => {
 	const { rows } = await pool.query(
 		"SELECT blog_id, creator_name, creator_user_id, title, body, date_created FROM blogs ORDER BY date_created DESC"
 	);
-	res.render("index", {
-		posts: rows,
-		userId: req.session.userId,
-		name: req.session.name,
-	});
+	res.render("index", { posts: rows });
 });
 
 // Registration form
@@ -42,7 +44,9 @@ app.post("/register", async (req, res) => {
 		user_id,
 	]);
 	if (existing.rowCount > 0) {
-		return res.render("register", { error: "User ID already taken" });
+		return res.render("register", {
+			error: "User ID already taken",
+		});
 	}
 	await pool.query(
 		"INSERT INTO users(user_id, password, name) VALUES ($1,$2,$3)",
@@ -64,7 +68,9 @@ app.post("/login", async (req, res) => {
 		[user_id, password]
 	);
 	if (rows.length === 0) {
-		return res.render("login", { error: "Invalid credentials" });
+		return res.render("login", {
+			error: "Invalid credentials",
+		});
 	}
 	req.session.userId = rows[0].user_id;
 	req.session.name = rows[0].name;
